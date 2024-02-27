@@ -23,8 +23,10 @@ y <- car.mat$ln.Temp.C.
 
 y <- as.matrix(y)
 
+raw.cols <- c(4, 5, 6, 7, 9, 10, 12)
+
 x.trans <- car.mat[,17:21]
-x.raw <- car.mat[,4:12]
+x.raw <- car.mat[,raw.cols]
 
 x <- x.trans
 x <- cbind(x, car.mat$rs., car.mat$rw.)
@@ -131,6 +133,9 @@ plot(test_y, y_pred)
 rval <-cor(test_y, y_pred)
 rval**2
 
+rootwd <- getwd()
+savewd <-"G:\\Workspace\\carousel-burner\\model_88_raw"
+save_model_tf(model_88_raw, filepath = savewd)
 
 
 ypred.all <- model_88_raw %>% predict(x)
@@ -236,4 +241,3 @@ rval <-cor(y, ypred.all)
 rval**2
 
 write.table(ypred.all, "ypred-8-8.csv")
-
